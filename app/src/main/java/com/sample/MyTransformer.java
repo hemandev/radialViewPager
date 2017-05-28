@@ -55,7 +55,20 @@ final Float ORG_POS = 0f;
         float y = c - (float)Math.pow(x, 2) / fourA ;
         page.setTranslationY(y - page.getTop());
 
-
+        // Change the scale of the page for positivePosition [.30, .70]
+        if(positivePosition  >= 0.30 && positivePosition <= 0.70) {
+            double actualScalingFactor = 0, maxScaleFactor = 0.25;
+            if(positivePosition >= 0.50) {
+                actualScalingFactor = ((0.70 - positivePosition)/.2) * maxScaleFactor;
+            } else {
+                actualScalingFactor = maxScaleFactor - ((0.50 - positivePosition)/.2) * maxScaleFactor;
+            }
+            page.setScaleX(1 + (float)actualScalingFactor);
+            page.setScaleY(1 + (float)actualScalingFactor);
+        } else {
+            page.setScaleX(1);
+            page.setScaleY(1);
+        }
 
     }
 }
